@@ -35,4 +35,3 @@ def stop_download(video_id):
         process.wait()
         processes[video_id] = None
         convert_to_mp4(video_id)
-        print(f"La descarga del video {video_id} ha sido detenida y convertida a un archivo mp4.")
