@@ -6,7 +6,6 @@ import ui
 # Función que maneja los eventos de la GUI
 def handle_event(event, values):
     if event == 'Carpeta':
-        # Abre la carpeta de videos
         os.startfile('videos')
 
     if event == 'Limpiar':
@@ -16,7 +15,6 @@ def handle_event(event, values):
         url = values['-URL-']
         video_id = str(uuid.uuid4())
 
-        # Llamamos a la función "download_video" del archivo "funciones.py" para descargar el video
         funciones.download_video(url, video_id)
 
         # Agregamos la fila de la descarga en la tabla
@@ -34,9 +32,7 @@ def handle_event(event, values):
                 funciones.stop_download(video_id)
 
                 # Actualizamos el estado de la descarga en la tabla
-                ui.update_table(video_id, "Detenida")
-
-
+                ui.update_table(video_id, "Fin")
 
 # Bucle principal de la GUI
 while True:
@@ -49,5 +45,4 @@ while True:
     if event == ui.sg.WIN_CLOSED:
         break
 
-# Cerramos la ventana al finalizar
 ui.close_window()
