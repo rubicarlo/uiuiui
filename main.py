@@ -3,7 +3,6 @@ import uuid
 import funciones
 import ui
 
-# Función que maneja los eventos de la GUI
 def handle_event(event, values):
     if event == 'Carpeta':
         os.startfile('videos')
@@ -17,7 +16,6 @@ def handle_event(event, values):
 
         funciones.download_video(url, video_id)
 
-        # Agregamos la fila de la descarga en la tabla
         row = [video_id, f"video_{video_id}.mp4", "Descargando"]
         ui.window['-TABLE'].update([*ui.window['-TABLE'].get(), row])
 
@@ -28,20 +26,15 @@ def handle_event(event, values):
             if video_data:
                 video_id = video_data[0]
 
-                # Llamamos a la función "stop_download" del archivo "funciones.py" para detener la descarga del video
                 funciones.stop_download(video_id)
 
-                # Actualizamos el estado de la descarga en la tabla
                 ui.update_table(video_id, "Fin")
 
-# Bucle principal de la GUI
 while True:
     event, values = ui.window.read()
 
-    # Manejamos el evento
     handle_event(event, values)
 
-    # Verificamos si el usuario cerró la ventana
     if event == ui.sg.WIN_CLOSED:
         break
 
